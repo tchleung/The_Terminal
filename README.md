@@ -11,13 +11,31 @@
 6. [Credits](#credits)
 
 ## **Overview**
-Airplane has become a commoditized mode of transportation over the years in the U.S. Millions of travelers travel across the country and around the globe for both business and leisure.
+Airplane has become a commoditized mode of transportation over the years in the U.S.. Millions of travelers travel across the country and around the globe for both business and leisure.
 
-If you have been one of these travelers, chances are you have been blessed by the word that we shall not say (it starts with D and rhymes with Late).
+If you have been one of these travelers, chances are you have been blessed by either a delay or cancellation at least a few times in your life. Being stuck at an airport terminal is a terrible feeling. The seats at the gate are uncomfortable. The wifi can get spotty. A burger causes $15 plus tax, tips, and some tacked on health tax.
+
+In this project, let us pretend to be Tom Hanks, stuck at a terminal with no end in sight. We have all the time in the world, so let's explore some flight data.
 
 ## **Questions**
+Our main question is whether SFO is the WAAT (worst airport of all time)
+
+To answer that question, we will explore a few key datapoints
+
+1. Popularity
+What are the most popular airports in the U.S.?
+
+2. Cancellation
+Which airport cancels the most flight?
+What are the correlation with other factors?
+
+3. Delay
+Can we prove that there is statistical difference between SFO and other airports in flight delays?
 
 ## **Data**
+Data obtained from the "Airline On-Time Performance Data" database hosted by the US Department of Transportation
+
+The database tracks every non-stop U.S. domestic flights by month and year, by carrier and by origin and destination airport. Includes scheduled and actual departure and arrival times, canceled and diverted flights.
 
 ## **Visualization**
 
