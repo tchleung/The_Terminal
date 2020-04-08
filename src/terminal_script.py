@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import scipy.stats as scs
 
 def read_data(path):
     '''Initializes pandas dataframe'''
@@ -29,7 +30,7 @@ def plot_top_10_by_state(df,state_abr,colorhex1,colorhex2):
         ax.legend()
         plt.xticks(rotation=45)
         plt.figtext(.5,.95,f'Most Popular {state_abr} Airport By Flight Count', fontsize=20, ha='center')
-        plt.figtext(.5,.9,'(January 2020)',fontsize=13,ha='center')
+        # plt.figtext(.5,.9,'(January 2020)',fontsize=13,ha='center')
     
     else:
         most_popular_index = df['ORIGIN_CITY_NAME'].value_counts().head(10).index
@@ -48,5 +49,59 @@ def plot_top_10_by_state(df,state_abr,colorhex1,colorhex2):
         ax.legend()
         plt.xticks(rotation=45)
         plt.figtext(.5,.95,f'Most Popular US Airport By Flight Count', fontsize=20, ha='center')
-        plt.figtext(.5,.9,'(January 2020)',fontsize=13,ha='center')
+        # plt.figtext(.5,.9,'(January 2020)',fontsize=13,ha='center')
     
+def two_sample_t_test(df, city1, city2, col='DEP_DELAY'):
+    # samples
+    city_one = df[(df['ORIGIN_CITY_NAME'] == city1) & (df[col].isnull() == False)][col]
+    city_two = df[(df['ORIGIN_CITY_NAME'] == city2) & (df[col].isnull() == False)][col]
+    
+    # sample size
+    N1 = len(city_one)
+    N2 = len(city_two)
+
+    # sample variance
+    a_var = city_one.var(ddof=1)
+    b_var = city_two.var(ddof=1)
+
+    # sample std
+    a_b_std = np.sqrt(a_var/N1 + b_var/N2)
+
+    # t score
+    t_score = ((city_one.mean() - city_two.mean())/a_b_std)
+
+    # pooled degrees of freedom
+    df = (a_var/N1 + b_var/N2) ** 2 / (((a_var/N1)**2)/(N1-1) + ((b_var/N2)**2)/(N2-1))
+
+    # p value
+    p_val = 1 - scs.t.cdf(t_score,df=df)
+
+    return N1, N2, city_one.mean(), city_two.mean(), a_b_std, t_score, p_val
+
+
+def t_test_against_others(df, city, col='DEP_DELAY'):
+    # samples
+    city_one = df[(df['ORIGIN_CITY_NAME'] == city) & (df[col].isnull() == False)][col]
+    ex_city_one = df[(df['ORIGIN_CITY_NAME'] != city) & (df[col].isnull() == False)][col]
+    
+    # sample size
+    N1 = len(city_one)
+    N2 = len(ex_city_one)
+
+    # sample variance
+    a_var = city_one.var(ddof=1)
+    b_var = ex_city_one.var(ddof=1)
+
+    # sample std
+    a_b_std = np.sqrt(a_var/N1 + b_var/N2)
+
+    # t score
+    t_score = ((city_one.mean() - ex_city_one.mean())/a_b_std)
+
+    # pooled degrees of freedom
+    df = (a_var/N1 + b_var/N2) ** 2 / (((a_var/N1)**2)/(N1-1) + ((b_var/N2)**2)/(N2-1))
+
+    # p value
+    p_val = 1 - scs.t.cdf(t_score,df=df)
+
+    return N1, N2, city_one.mean(), ex_city_one.mean(), a_b_std, t_score, p_val
