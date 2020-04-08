@@ -5,7 +5,7 @@
 # Table of Contents
 1. [Overview](#overview)
 2. [Questions](#questions)
-3. [Cleaning](#cleaning)
+3. [Data](#Data)
 4. [Visualization](#visualization)
 5. [Conclusion](#conclusion)
 6. [Credits](#credits)
@@ -18,26 +18,24 @@ If you have been one of these travelers, chances are you have been blessed by ei
 In this project, let us pretend to be Tom Hanks, stuck at a terminal with no end in sight. We have all the time in the world, so let's explore some flight data.
 
 ## **Questions**
-Our main question is whether SFO is the WAAT (worst airport of all time)
+1. What are the most popular airports in the U.S.?
 
-To answer that question, we will explore a few key datapoints
+2. Which airports should we avoid?
 
-1. Popularity
-What are the most popular airports in the U.S.?
-
-2. Cancellation
-Which airport cancels the most flight?
-What are the correlation with other factors?
-
-3. Delay
-Can we prove that there is statistical difference between SFO and other airports in flight delays?
+3. Is San Francisco International airport (SFO) the WAAT (Worst Airport of All Time)?
 
 ## **Data**
+
 Data obtained from the "Airline On-Time Performance Data" database hosted by the US Department of Transportation
 
 The database tracks every non-stop U.S. domestic flights by month and year, by carrier and by origin and destination airport. Includes scheduled and actual departure and arrival times, canceled and diverted flights.
 
+We queried the trailing 12 months between February 2019 to January 2020
+
+In aggregate, the dataset contains 7,445,398 flight entries between 354 U.S. airports
+
 ## **Visualization**
+
 
 ## **Conclusion**
 
