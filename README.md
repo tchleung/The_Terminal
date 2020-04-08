@@ -5,21 +5,37 @@
 # Table of Contents
 1. [Overview](#overview)
 2. [Questions](#questions)
-3. [Cleaning](#cleaning)
+3. [Data](#Data)
 4. [Visualization](#visualization)
 5. [Conclusion](#conclusion)
 6. [Credits](#credits)
 
 ## **Overview**
-Airplane has become a commoditized mode of transportation over the years in the U.S. Millions of travelers travel across the country and around the globe for both business and leisure.
+Airplane has become a commoditized mode of transportation over the years in the U.S.. Millions of travelers travel across the country and around the globe for both business and leisure.
 
-If you have been one of these travelers, chances are you have been blessed by the word that we shall not say (it starts with D and rhymes with Late).
+If you have been one of these travelers, chances are you have been blessed by either a delay or cancellation at least a few times in your life. Being stuck at an airport terminal is a terrible feeling. The seats at the gate are uncomfortable. The wifi can get spotty. A burger causes $15 plus tax, tips, and some tacked on health tax.
+
+In this project, let us pretend to be Tom Hanks, stuck at a terminal with no end in sight. We have all the time in the world, so let's explore some flight data.
 
 ## **Questions**
+1. What are the most popular airports in the U.S.?
+
+2. Which airports should we avoid?
+
+3. Is San Francisco International airport (SFO) the WAAT (Worst Airport of All Time)?
 
 ## **Data**
 
+Data obtained from the "Airline On-Time Performance Data" database hosted by the US Department of Transportation
+
+The database tracks every non-stop U.S. domestic flights by month and year, by carrier and by origin and destination airport. Includes scheduled and actual departure and arrival times, canceled and diverted flights.
+
+We queried the trailing 12 months between February 2019 to January 2020
+
+In aggregate, the dataset contains 7,445,398 flight entries between 354 U.S. airports
+
 ## **Visualization**
+
 
 ## **Conclusion**
 
