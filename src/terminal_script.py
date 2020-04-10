@@ -61,8 +61,8 @@ def two_sample_t_test(df, city1, city2, col='DEP_DELAY'):
     N2 = len(city_two)
 
     # sample variance
-    a_var = city_one.var(ddof=N1-1)
-    b_var = city_two.var(ddof=N2-1)
+    a_var = np.var(city_one)
+    b_var = np.var(city_two)
 
     # sample std
     a_b_std = np.sqrt(a_var/N1 + b_var/N2)
@@ -89,8 +89,8 @@ def t_test_against_others(df, city, col='DEP_DELAY'):
     N2 = len(ex_city_one)
 
     # sample variance
-    a_var = city_one.var(ddof=N1-1)
-    b_var = ex_city_one.var(ddof=N2-1)
+    a_var = np.var(city_one)
+    b_var = np.var(ex_city_one)
 
     # sample std
     a_b_std = np.sqrt(a_var/N1 + b_var/N2)
@@ -117,8 +117,62 @@ def t_test_weather_quan(df, condition, col):
     N2 = len(sample_two)
 
     # sample variance
-    a_var = sample_one.var(ddof=N1-1)
-    b_var = sample_two.var(ddof=N2-1)
+    a_var = np.var(sample_one)
+    b_var = np.var(sample_two)
+
+    # sample std
+    a_b_std = np.sqrt(a_var/N1 + b_var/N2)
+
+    # t score
+    t_score = ((sample_one.mean() - sample_two.mean())/a_b_std)
+
+    # pooled degrees of freedom
+    df = (a_var/N1 + b_var/N2) ** 2 / (((a_var/N1)**2)/(N1-1) + ((b_var/N2)**2)/(N2-1))
+
+    # p value
+    p_val = scs.t.sf(t_score,df=df)*2
+
+    return N1, N2, sample_one.mean(), sample_two.mean(), a_b_std, t_score, p_val
+
+def t_test_weather_city(df,city1,city2,condition,cond_flag,col):
+    # samples
+    sample_one = df[(df['ORIGIN_CITY_NAME'] == city1) & (df[condition] == cond_flag)][col]
+    sample_two = df[(df['ORIGIN_CITY_NAME'] == city2) & (df[condition] == cond_flag)][col]
+    
+    # sample size
+    N1 = len(sample_one)
+    N2 = len(sample_two)
+
+    # sample variance
+    a_var = np.var(sample_one)
+    b_var = np.var(sample_two)
+
+    # sample std
+    a_b_std = np.sqrt(a_var/N1 + b_var/N2)
+
+    # t score
+    t_score = ((sample_one.mean() - sample_two.mean())/a_b_std)
+
+    # pooled degrees of freedom
+    df = (a_var/N1 + b_var/N2) ** 2 / (((a_var/N1)**2)/(N1-1) + ((b_var/N2)**2)/(N2-1))
+
+    # p value
+    p_val = scs.t.sf(t_score,df=df)*2
+
+    return N1, N2, sample_one.mean(), sample_two.mean(), a_b_std, t_score, p_val
+
+def airline_t_test(df, city1, city2, airline1, airline2, col='DEP_DELAY'):
+    # samples
+    sample_one = df[(df['ORIGIN_CITY_NAME'] == city1) & (df['OP_UNIQUE_CARRIER'] == airline1) & (df[col].isnull() == False)][col]
+    sample_two = df[(df['ORIGIN_CITY_NAME'] == city2) & (df['OP_UNIQUE_CARRIER'] == airline2) & (df[col].isnull() == False)][col]
+    
+    # sample size
+    N1 = len(sample_one)
+    N2 = len(sample_two)
+
+    # sample variance
+    a_var = np.var(sample_one)
+    b_var = np.var(sample_two)
 
     # sample std
     a_b_std = np.sqrt(a_var/N1 + b_var/N2)
