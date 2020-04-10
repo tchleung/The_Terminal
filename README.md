@@ -65,7 +65,7 @@ Focusing on California. Although SFO ranked 6th, the preceeding airports are all
 ![avg_delay_ca](/img/highest_avg_delay_CA.png)
 
 I decided to take a closer look at the busiest airports in the country and see how SFO compares.
-![avg_delay_high_traffic_us](/img/avg_delay_high_traffic_US.png)
+![avg_delay_high_traffic_us](/img/avg_delay_high_traffic_US_3.png)
 
 
 ## **Conclusion**
