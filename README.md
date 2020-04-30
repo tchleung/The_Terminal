@@ -61,12 +61,48 @@ The second key metric I looked at is delay in minutes. The Department of Transpo
 Here are the US airports with the highest average delay time. I am once again relieved that it did not make the top 10. Notice our good friend Mammoth Lakes made top 10 again
 ![avg_delay_US](/img/highest_avg_delay_US.png)
 
-Focusing on California. Although SFO ranked 6th, the preceeding airports are all much smaller regional airports, this is a bit concerning. 
+Focusing on California. Although SFO ranked 6th, the preceeding airports are all much smaller regional airports.
 ![avg_delay_ca](/img/highest_avg_delay_CA.png)
 
-I decided to take a closer look at the busiest airports in the country and see how SFO compares.
-![avg_delay_high_traffic_us](/img/avg_delay_high_traffic_US_3.png)
+In order to filter out the small airports, I decided to take a closer look at the busiest airports in the country and see how SFO compares. Despite having the 11th most domestic flight, it ranked 5th in average delay.
+![avg_delay_high_traffic_us](/img/avg_delay_high_traffic_US.png)
 
+Looking at the distribution of all the flight delay across these 11 airports, I was suprised to find that over half of the flights were actually on time (and early!). Notice the middle black lines (indicating the median point) were all towards the left of 0.
+![delay_dist_zoomed_US](/img/delay_dist_zoomed_US.png)
+
+The previous graph was purposely zoomed into the middle. Take a look at the full distribution here.
+![delay_dist_full_US](/img/delay_dist_full_US.png)
+There were some extreme delays.
+
+### Hypothesis Testing #1
+I ran several two-samples, one-tailed t-test to test the null hypothesis that San Francisco Airport delay were no different comparing to:
+
+1. National Average
+2. Los Angeles Airport
+3. Oakland Airport
+4. San Jose Airport
+
+Using an alpha of 0.05 (95% confidence), the t-tests rejected all the null hypotheses with p-val < 0.05
+
+### Weather
+San Francisco has been an infamous reputation for being foggy. I was wondering if weather condition had an effect on the flight.
+
+I identified the NOAA weather stations located at/near the airports of San Francisco, Los Angeles, Oakland, and San Jose, and queried the daily climate data between the same timeframe as the flight data (Feb '19 - Jan '20)
+
+Plotting four binary weather condition flags (Fog, Heavy Fog, Thunder, Smoke/Haze) against cancellation rate. No obvious pattern observed
+![cancel_weather_sfo](/img/cancel_weather_SFO.png)
+
+Plotting the same weather flags against average delay, it seems to have longer delay on foggy and smokey days
+![delay_weather_sfo](/img/delay_weather_SFO.png)
+
+The daily climate data also included average temperature, average windspeed and precipitation. Fairly weak correlations with cancellation rates
+![cancel_weather_sfo_2](/img/cancel_weather_SFO_2.png)
+
+Same applied to average delay time
+![delay_weather_sfo_2](/img/delay_weather_SFO_2.png)
+
+### Hypothesis Testing #2
+The visualization between statistical
 
 ## **Conclusion**
 
