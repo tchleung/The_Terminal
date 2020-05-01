@@ -17,6 +17,7 @@
     * [Hypothesis Testing 2](#hypothesis-testing-2)
     * [Runway](#runway)
     * [Airline](#airline)
+    * [Hypothesis Testing 3](#hypothesis-testing-3)
 5. [Conclusion](#conclusion)
 6. [Credits](#credits)
 <!--te-->
